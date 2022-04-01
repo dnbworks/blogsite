@@ -1,0 +1,118 @@
+  $path = __DIR__ . "/../resources/posts/{$slug}.html";
+     if(! file_exists($path)){
+         return redirect('/');
+     }
+     $post = cache()->remember("posts.{$slug}", 60, function() use ($path) {
+         var_dump('file_system');
+         return file_get_contents($path);
+     });
+
+    all()
+     $files = File::files(resource_path('posts/'));
+
+        return array_map(function($file){
+            return $file->getContents();
+        }, $files);
+    find()
+    if(!file_exists($path = resource_path("posts/{$slug}.html"))){
+            throw new ModelNotFoundException();
+        }
+        return cache()->remember("posts.{$slug}", 30, fn() => file_get_contents($path));
+
+
+
+Post Model
+
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
+
+class Post {
+
+    public $title;
+    public $excerpt;
+    public $date;
+    public $body;
+    public $slug;
+
+    public function __construct($title, $excerpt, $date, $body, $slug)
+    {
+        $this->title = $title;
+        $this->excerpt = $excerpt;
+        $this->date = $date;
+        $this->body = $body;
+        $this->slug = $slug;
+    }
+
+    public static function all()
+    {
+        return cache()->remember('posts.all', 30, function(){
+            return collect(File::files(resource_path('posts')))
+                ->map(fn($file) => YamlFrontMatter::parseFile($file))
+                ->map(fn($document) => new Post(
+                    $document->title,
+                    $document->excerpt,
+                    $document->date,
+                    $document->body(),
+                    $document->slug
+                ))
+                ->sortByDesc('date');
+        });
+    }
+
+    public static function find($slug)
+    {
+        return static::all()->firstWhere('slug', $slug);
+    }
+
+    public static function findOrFail($slug)
+    {
+        $post = static::find($slug);
+        if(!$post){
+            throw new ModelNotFoundException();
+        }
+        return $post;
+    }
+}
+
+ DB::listen(function ($query) {
+        logger($query->sql, $query->bindings);
+    });
+
+
+    <!-- Post::create(['title' => 'My Second Post', 'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis non sequi rerum assumenda, officiis cumque sed et porro', 'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis non sequi rerum assumenda, officiis cumque sed et porro']); -->
+
+    db:seed
+
+     \App\Models\User::truncate();
+        Category::truncate();
+        Post::truncate();
+
+Sorry, that password isn't right. We can help you recover your password.
+
+Whoops
+Looks like you forgot your password there, johnnylylods.
+
+Whoops
+You did not enter a username or a password.
+
+Sorry, we couldn't find an account with that username. Can we help you recover your username?
+
+Tony Lopez TikTok Star Under Fire After Allegations Of Sending Inappropriate Pictures
+
+Tony-Lopez-TikTok-Star-Under-Fire-After-Allegations-Of-Sending-inappropriate-Pictures
+
+Tony Lopez Biography American TikTok Star, who is also a member of the Lopez Brothers along with his brother Ondreaz Lopez. His tonylopez TikTok page has more than 22 million
+
+<p>According to The TikTok Shaderoom, Tony used Snapchat and Instagram direct messages to communicate with minors. “I guess it never clicked into his head that I wasn’t 20 years old,” the victim said, commenting on screenshots of Snapchat messages that were allegedly sent to him by a Hype House member. “But you can see, he kept saying s–t knowing I wasn’t old. Predators don’t care!”</p>
+<p>Tony was accused of taking @ouuitzjaidaa’s dance, without crediting her. These accusations, while not as serious as sending sexual messages directly to minors, are damaging to Tony’s credibility and reputation as a content creator.</p>
+
+<p></p>
+<p></p>
+<p></p>
+
+Johnnylylod@2022post
